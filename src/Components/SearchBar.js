@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 
+/**
+ * Input form for searching for a Star Wars character
+ */
 class SearchBar extends Component {
+
 
 render(){
     return(
         <div>
-            <form onSubmit={this.props.addItemForSearch}>
+            <form>
                 <input
                  placeholder="Search ... "
                  ref = {this.props.inputElement}

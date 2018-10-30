@@ -1,0 +1,1 @@
+export const STARWARS_API_URL ='https://swapi.co/api/people/';
