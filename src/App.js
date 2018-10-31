@@ -22,8 +22,6 @@ class App extends Component {
         key: ''
       }
     }
-    this.handleSearchInput.bind(this);
-    this.addItemForSearch.bind(this);
   }
 
   handleSearchInput = e => {
