@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from './Components/SearchBar';
 import SearchBarDetails from './Components/SearchBarDetails';
 import * as Constants from './Constants/Constants';
-import './App.css';
+import './Styles/App.css';
 
 class App extends Component {
 
@@ -16,7 +16,7 @@ class App extends Component {
           name:'',
           height:'',
           mass:'',
-          birthday:'',
+          birth_year:'',
           gender:''
         },
         key: '' }
@@ -72,13 +72,16 @@ class App extends Component {
       const json = await response.json();
       
       if (json.count >= 1) {
-        const resultObject={
-          name:json.results[0].name,
-          height:json.results[0].height,
-          mass:json.results[0].mass,
-          birthday: json.results[0].birth_year,
-          gender:json.results[0].gender
+        const {name, height, mass, birth_year, gender} = json.results[0];
+
+        const resultObject = {
+          name,
+          height, 
+          mass,
+          birth_year, 
+          gender
         }
+        
         return Promise.resolve(resultObject);
       }
       else {
@@ -91,7 +94,9 @@ class App extends Component {
   }
 
   render() {
-    return (
+    const { searchedItemDetails, foundDetails } = this.state;
+
+    return (     
       <div className="App">
         <header className="App-header">
             * Star Wars Goodness *
@@ -101,9 +106,9 @@ class App extends Component {
              currentItem={this.state.searchedItem}
              addItemForSearch={this.addItemForSearch} 
               />
-            <SearchBarDetails 
-            searchedItemDetails={this.state.searchedItemDetails.text}
-            showSearchBarDetails={this.state.foundDetails}
+            <SearchBarDetails
+            searchedItemDetails={searchedItemDetails}
+            showSearchBarDetails={foundDetails}
              />
         </header>       
       </div>
