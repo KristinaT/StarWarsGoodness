@@ -1,82 +1,113 @@
 import React, { Component } from 'react';
-import './App.css';
 import SearchBar from './Components/SearchBar';
-
-const starWarsApiUrl ='https://swapi.co/api/people/';
+import SearchBarDetails from './Components/SearchBarDetails';
+import * as Constants from './Constants/Constants';
+import './Styles/App.css';
 
 class App extends Component {
 
-  constructor(){
+  constructor() {
     super()
     this.state = {
-      searchedItem: { text: '', key: '' }
+      searchedItem: { text: '', key: '' },
+      foundDetails: null,
+      searchedItemDetails: {
+        text: {
+          name: '',
+          height: '',
+          mass: '',
+          birth_year: '',
+          gender: ''
+        },
+        key: ''
+      }
     }
-    this.handleSearchInput.bind(this);
-    this.addItemForSearch.bind(this);
   }
 
-  handleSearchInput = e =>{
- 
+  handleSearchInput = e => {
+
     const itemText = e.target.value;
     const searchedItem = {
-      text:itemText,
-      key:Date.now()
+      text: itemText,
+      key: Date.now()
     }
-    this.setState({searchedItem});
+    this.setState({ searchedItem });
   }
- 
-  addItemForSearch = e => {
-    
+
+  addItemForSearch = async e => {
     const itemForSearch = this.state.searchedItem.text;
 
     const searchedItem = {
-      text:'',
-      key:''
+      text: '',
+      key: ''
     }
 
     // GET request
-    this.handleUrl(itemForSearch).then(response => {
+    try {
+      const response = await this.handleUrl(itemForSearch);
       console.log('response', response)
-    }).catch(e=> {
-      console.log(e);
-    })
+      const searchedItemDetails = {
+        text: response,
+        key: Date.now()
+      }
 
-    // Set the state back to empty
-    this.setState({searchedItem})
+      this.setState({ foundDetails: true, searchedItemDetails, searchedItem });
+    }
+    catch (e) {
+      console.log(e);
+      
+      this.setState({ foundDetails: false, searchedItem });
+    }
+
   }
 
-  async handleUrl(item){
-    try {
+  handleUrl = async (item) => {
 
-      const url = `${starWarsApiUrl}?search=${item}`;
+    try {
+      const url = `${Constants.STARWARS_API_URL}?search=${item}`;
       const response = await fetch(url);
       const json = await response.json();
-      
-      // TODO: change logic here
+
       if (json.count >= 1) {
-        return Promise.resolve(json.results[0].name);
+        const { name, height, mass, birth_year, gender } = json.results[0];
+
+        const resultObject = {
+          name,
+          height,
+          mass,
+          birth_year,
+          gender
+        }
+
+        return Promise.resolve(resultObject);
       }
       else {
-          return Promise.reject(console.error('Cannot fetch the name'));
+        return Promise.reject(console.error('Cannot fetch the name'));
       }
     }
-    catch(e){
+    catch (e) {
       console.log(e);
     }
   }
 
   render() {
+    const { searchedItemDetails, foundDetails } = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
-            Star Wars goodness 
+          * Star Wars Goodness *
             <SearchBar
-             inputElement= {this.inputElement}
-             onChangeInput = {this.handleSearchInput}
-             currentItem={this.state.searchedItem}
-             addItemForSearch={this.addItemForSearch} 
-              />
-        </header>       
+            inputElement={this.inputElement}
+            onChangeInput={this.handleSearchInput}
+            currentItem={this.state.searchedItem}
+            addItemForSearch={this.addItemForSearch}
+          />
+          <SearchBarDetails
+            searchedItemDetails={searchedItemDetails}
+            showSearchBarDetails={foundDetails}
+          />
+        </header>
       </div>
     );
   }
