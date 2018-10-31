@@ -20,7 +20,8 @@ class App extends Component {
           gender: ''
         },
         key: ''
-      }
+      },
+      loading:false
     }
   }
 
@@ -42,6 +43,8 @@ class App extends Component {
       key: ''
     }
 
+    this.setState({loading:true});
+
     // GET request
     try {
       const response = await this.handleUrl(itemForSearch);
@@ -58,7 +61,7 @@ class App extends Component {
       
       this.setState({ foundDetails: false, searchedItem });
     }
-
+    this.setState({loading:false});
   }
 
   handleUrl = async (item) => {
@@ -88,10 +91,12 @@ class App extends Component {
     catch (e) {
       console.log(e);
     }
+
   }
 
+  // TODO: Add loader!
   render() {
-    const { searchedItemDetails, foundDetails } = this.state;
+    const { searchedItemDetails, foundDetails, loading } = this.state;
 
     return (
       <div className="App">
@@ -106,6 +111,7 @@ class App extends Component {
           <SearchBarDetails
             searchedItemDetails={searchedItemDetails}
             showSearchBarDetails={foundDetails}
+            loading = {loading}
           />
         </header>
       </div>
