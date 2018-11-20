@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import SearchBar from './Components/SearchBar';
 import SearchBarDetails from './Components/SearchBarDetails';
+import Categories from './Components/Categories';
 import * as Constants from './Constants/Constants';
 import './Styles/App.css';
-import Image from './Images/slide_1.jpeg'
-import Image2 from './Images/slide_2.jpg'
-import Image3 from './Images/slide_3.jpg'
+import images from './Images/images'
+// eslint-disable-next-line
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
+
 var Carousel = require('react-responsive-carousel').Carousel;
 
-class App extends Component {
+class MainScreen extends Component {
 
   constructor() {
     super()
@@ -101,6 +102,12 @@ class App extends Component {
   render() {
     const { searchedItemDetails, foundDetails, loading } = this.state;
 
+    const imageDivs = Object.values(images).map((img, index)=>{
+      return(
+        <img key={index} src={img} alt="img" height="550" width="600" />
+      );
+    })
+
     return (
       <div className="App">
         <header className="App-header">
@@ -112,9 +119,7 @@ class App extends Component {
           showIndicators={false}
           showArrows={false}
           >
-            <img src={Image} alt="bla" height="550" width="600" />
-            <img src={Image2} alt="ble" height="550" width="600" />
-            <img src={Image3} alt="blu" height="550" width="600" />
+            {imageDivs}
         </Carousel> 
           * Star Wars Goodness *
             <SearchBar
@@ -127,14 +132,12 @@ class App extends Component {
             searchedItemDetails={searchedItemDetails}
             showSearchBarDetails={foundDetails}
             loading = {loading}
-          />
-     
+          />     
         </header>
-
-
+        <Categories />  
       </div>
     );
   }
 }
 
-export default App;
+export default MainScreen;
