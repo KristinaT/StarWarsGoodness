@@ -73,9 +73,10 @@ class MainScreen extends Component {
   handleUrl = async (item) => {
 
     try {
-      const url = `${Constants.STARWARS_API_URL}?search=${item}`;
+      const url = `${Constants.STARWARS_API_PEOPLE_URL}?search=${item}`;
       const response = await fetch(url);
       const json = await response.json();
+      console.log(json,'json')
 
       if (json.count >= 1) {
         const { name, height, mass, birth_year, gender } = json.results[0];
