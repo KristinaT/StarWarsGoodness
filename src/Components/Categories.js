@@ -5,7 +5,7 @@ class Categories extends Component {
 
     render(){
 
-        const categories = ['people','planets','species','Starships','Vehicles','Films'];
+        const categories = ['People','Planets','Species','Starships','Vehicles','Films'];
         const categoryItems = categories.map((category,index)=>           
             <Link to="categoryDetails" state={{category}} key={index} >
                 <li>{category}</li>
