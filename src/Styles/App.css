@@ -1,6 +1,9 @@
+
 .App {
   text-align: center;
-  background-color: #282046;
+  background-color: black;
+  color: #E7D80C;
+  text-decoration: none;
 }
 
 .App-logo {
@@ -41,16 +44,28 @@
   margin-left: 200px;
 }
 
+.Categories{
+  color: #E7D80C;
+  text-decoration: none;
+  color:inherit;
+}
+
 .Category-details-h1 {
   text-align: center;
-  color: #F16450;
+  color: #E7D80C;
   margin: 0;
   padding: 10px;
   font-family: "StarWars";
 }
-.Category-details{
-  background-color: #282046;
+.Category-details {
+  background-color: black;
+  color: #E7D80C;
+  text-decoration: none;
+ 
   
+}
+.SearchBar-btn {
+  margin: 30px;
 }
 @font-face {
   font-family: "StarWars";

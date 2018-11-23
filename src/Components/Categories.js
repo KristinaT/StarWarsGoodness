@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from "@reach/router";
-
+import '../Styles/App.css';
 class Categories extends Component {
 
     render(){
@@ -13,8 +13,8 @@ class Categories extends Component {
         );
 
         return(
-            <div>
-            <h2>Choose a category:</h2>
+            <div className="Categories">
+            <h2 className="Category-details-h1">Choose a category:</h2>
                 <ul>
                     {categoryItems}                                 
                 </ul>              

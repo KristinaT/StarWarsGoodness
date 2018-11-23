@@ -5,11 +5,31 @@ import Categories from './Components/Categories';
 import * as Constants from './Constants/Constants';
 import './Styles/App.css';
 import images from './Images/images'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 // eslint-disable-next-line
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 var Carousel = require('react-responsive-carousel').Carousel;
-
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    primary: {
+      light: '#ffffff',
+      main: '#000000',
+    },
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        background: '#E7D80C',
+        borderRadius: 1,
+        border: 0,
+        color: 'black', 
+            
+      },
+    },
+  }
+});
 class MainScreen extends Component {
 
   constructor() {
@@ -110,7 +130,8 @@ class MainScreen extends Component {
     })
 
     return (
-      <div className="App">
+       <MuiThemeProvider theme={theme}>
+       <div className="App">
         <Carousel
           autoPlay={true}
           infiniteLoop={true}
@@ -121,7 +142,7 @@ class MainScreen extends Component {
           >
             {imageDivs}
         </Carousel> 
-          * Star Wars Goodness *
+          <h1 className="Category-details-h1">* Star Wars Goodness *</h1>
             <SearchBar
             inputElement={this.inputElement}
             onChangeInput={this.handleSearchInput}
@@ -135,6 +156,8 @@ class MainScreen extends Component {
           />     
         <Categories />  
       </div>
+       </MuiThemeProvider>
+
     );
   }
 }
