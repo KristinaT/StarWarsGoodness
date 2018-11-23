@@ -2,6 +2,10 @@ import React, {Component} from 'react'
 import * as Constants from '../Constants/Constants';
 import CategoryDetailsInfo from './CategoryDetailsInfo'
 import { Grid } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import '../Styles/App.css';
+import { Link } from "@reach/router";
+import LoadingImg from '../Images/r2d2.gif';
 class CategoryDetails extends Component {
 
     constructor(){
@@ -69,7 +73,7 @@ class CategoryDetails extends Component {
     const {categoryResult} = this.state;
     //TODO: add loading icon
     let categoryItems = (
-        <h4>Loading.....</h4>
+        <img src={LoadingImg} alt="Loading..." />
     );
 
     if(this.state.isLoading===false){
@@ -81,8 +85,19 @@ class CategoryDetails extends Component {
     }
 
     return(       
-        <div>
-            <h2>{this.props.location.state.category}</h2>
+        <div className="Category-details">
+            <div >
+                <h1 className="Category-details-h1">{this.props.location.state.category}</h1>
+                <div className="Div-positioning">
+                    <Link to="/" >
+                        <Button size="small" color="secondary">
+                            Back
+                        </Button>
+                    </Link>
+
+                </div>
+
+            </div>
             <Grid
                 container
                 direction="row"

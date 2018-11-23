@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #282046;
 }
 
 .App-logo {
@@ -35,3 +36,27 @@
   font-size: 20px;
   padding:0;
 }
+
+.Div-positioning {
+  margin-left: 200px;
+}
+
+.Category-details-h1 {
+  text-align: center;
+  color: #F16450;
+  margin: 0;
+  padding: 10px;
+  font-family: "StarWars";
+}
+.Category-details{
+  background-color: #282046;
+  
+}
+@font-face {
+  font-family: "StarWars";
+  src: url("../Fonts/Starjedi.ttf");
+  src: 
+  url("../Fonts/Starjedi.ttf") format("ttf"),
+  /* url("css/fonts/Harabara.otf") format("opentype"),
+  url("css/fonts/Harabara.svg#filename") format("svg"); */
+  }

@@ -111,7 +111,6 @@ class MainScreen extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">
         <Carousel
           autoPlay={true}
           infiniteLoop={true}
@@ -134,7 +133,6 @@ class MainScreen extends Component {
             showSearchBarDetails={foundDetails}
             loading = {loading}
           />     
-        </header>
         <Categories />  
       </div>
     );
