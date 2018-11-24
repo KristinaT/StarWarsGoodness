@@ -1,27 +1,32 @@
 import React, { Component } from 'react'
 import { Link } from "@reach/router";
+import '../Styles/App.css';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { withStyles } from '@material-ui/core/styles';
+
 
 class Categories extends Component {
 
-    handleClick = (category) => {
-        
-    }
-
     render(){
-
         const categories = ['People','Planets','Species','Starships','Vehicles','Films'];
-
         const categoryItems = categories.map((category,index)=>           
-            <Link to="categoryDetails" key={index} >
-                <li onClick={()=>this.handleClick(category)}>{category}</li>
+            <Link to="categoryDetails" state={{category}} key={index} >
+                <ListItem button>
+                    <ListItemText inset primary={category} />
+                </ListItem>
             </Link>
         );
+
         return(
-            <div>
-            <h2>Choose a category:</h2>
-                <ul>
-                    {categoryItems}                                 
-                </ul>              
+            <div className="Categories">
+                <div className="SearchBar-card">
+                <h2 className="Category-details-h1">Choose a category:</h2>
+                    <List component="nav">                   
+                        {categoryItems}                
+                    </List>                    
+                </div>       
             </div>
             )
         }

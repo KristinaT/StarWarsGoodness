@@ -1,5 +1,9 @@
+
 .App {
   text-align: center;
+  background-color: black;
+  color: #E7D80C;
+  text-decoration: none;
 }
 
 .App-logo {
@@ -35,3 +39,45 @@
   font-size: 20px;
   padding:0;
 }
+
+.Div-positioning {
+  margin-left: 200px;
+}
+
+.Categories{
+  color: #E7D80C;
+  text-decoration: none;
+  color:inherit;
+}
+
+.Category-details-h1 {
+  text-align: center;
+  color: #E7D80C;
+  margin: 0;
+  padding: 10px;
+  font-family: "StarWars";
+}
+.Category-details {
+  background-color: black;
+  color: #E7D80C;
+  text-decoration: none;
+ 
+  
+}
+.SearchBar-btn {
+  margin: 30px;
+}
+
+.SearchBar-card{
+  width: 500px;
+  margin-top: 2%;
+  padding-left: 35%;
+}
+@font-face {
+  font-family: "StarWars";
+  src: url("../Fonts/Starjedi.ttf");
+  src: 
+  url("../Fonts/Starjedi.ttf") format("ttf"),
+  /* url("css/fonts/Harabara.otf") format("opentype"),
+  url("css/fonts/Harabara.svg#filename") format("svg"); */
+  }

@@ -1,15 +1,30 @@
 import React from 'react'
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import '../Styles/App.css'
 /**
  * Representing the details from the searched character
  */
+const theme = createMuiTheme({
+    palette: {
+      type: 'dark',
+    },
+  });
+
 const SearchBarDetails = ({ searchedItemDetails, showSearchBarDetails, loading }) => {
 
     let detailItems = Object.keys(searchedItemDetails.text).map((key, index) => {
-        return <li key={index}> {[searchedItemDetails.text[key]]}</li>;
+        return (
+            <ListItem button>
+                <ListItemText  color="Green" key={index} inset primary={[searchedItemDetails.text[key]]} />              
+            </ListItem>         
+        )
+        
     });
 
-    let showDetail = <h6> Search for a person in the input above, duh =) </h6>;
+    let showDetail;
     if(loading === true){
         showDetail = <h6> Fetching data.... </h6>;
     }
@@ -19,16 +34,26 @@ const SearchBarDetails = ({ searchedItemDetails, showSearchBarDetails, loading }
         }
         else if (showSearchBarDetails === true) {
             showDetail = (
-                <ul className="SearchBarDetails-ul"> <b>Details</b>
-                    {detailItems}
-                </ul>);
+                <div className="SearchBar-card">
+                    <List component="nav">                   
+                        <ListItem>
+                            <ListItemText inset primary="Details" />
+                        </ListItem>
+                        {detailItems}                
+                    </List>           
+                </div>
+            );
         }
     }
 
     return (
+        <MuiThemeProvider theme={theme}>
         <div>
+            {/* <h4>Details</h4> */}
             { showDetail }
         </div>
+        </MuiThemeProvider>
+
     )}
 
 export default SearchBarDetails;

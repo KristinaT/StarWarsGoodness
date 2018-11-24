@@ -5,11 +5,31 @@ import Categories from './Components/Categories';
 import * as Constants from './Constants/Constants';
 import './Styles/App.css';
 import images from './Images/images'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 // eslint-disable-next-line
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 var Carousel = require('react-responsive-carousel').Carousel;
-
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    primary: {
+      light: '#ffffff',
+      main: '#000000',
+    },
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        background: '#E7D80C',
+        borderRadius: 1,
+        border: 0,
+        color: 'black', 
+            
+      },
+    },
+  }
+});
 class MainScreen extends Component {
 
   constructor() {
@@ -73,9 +93,10 @@ class MainScreen extends Component {
   handleUrl = async (item) => {
 
     try {
-      const url = `${Constants.STARWARS_API_URL}?search=${item}`;
+      const url = `${Constants.STARWARS_API_PEOPLE_URL}?search=${item}`;
       const response = await fetch(url);
       const json = await response.json();
+      console.log(json,'json')
 
       if (json.count >= 1) {
         const { name, height, mass, birth_year, gender } = json.results[0];
@@ -104,13 +125,13 @@ class MainScreen extends Component {
 
     const imageDivs = Object.values(images).map((img, index)=>{
       return(
-        <img key={index} src={img} alt="img" height="550" width="600" />
+        <img key={index} src={img} alt="img" height="750" width="600" />
       );
     })
 
     return (
-      <div className="App">
-        <header className="App-header">
+       <MuiThemeProvider theme={theme}>
+       <div className="App">
         <Carousel
           autoPlay={true}
           infiniteLoop={true}
@@ -121,7 +142,7 @@ class MainScreen extends Component {
           >
             {imageDivs}
         </Carousel> 
-          * Star Wars Goodness *
+          <h1 className="Category-details-h1">Star Wars Goodness</h1>
             <SearchBar
             inputElement={this.inputElement}
             onChangeInput={this.handleSearchInput}
@@ -133,9 +154,10 @@ class MainScreen extends Component {
             showSearchBarDetails={foundDetails}
             loading = {loading}
           />     
-        </header>
         <Categories />  
       </div>
+       </MuiThemeProvider>
+
     );
   }
 }
