@@ -12,13 +12,13 @@ const styles = {
         color:'#E7D80C',
 
       },
-      underline: {
-        borderBottom: '3px solid green',
-        '&:after': {
-          // The source seems to use this but it doesn't work
-          borderBottom: '3px solid green',
-        },
-      }
+    //   underline: {
+    //     borderBottom: '3px solid green',
+    //     '&:after': {
+    //       // The source seems to use this but it doesn't work
+    //       borderBottom: '3px solid green',
+    //     },
+    //   }
   };
 class SearchBar extends Component {
 

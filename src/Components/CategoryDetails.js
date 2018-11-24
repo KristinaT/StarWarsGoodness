@@ -5,7 +5,7 @@ import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import '../Styles/App.css';
 import { Link } from "@reach/router";
-import LoadingImg from '../Images/r2d2.gif';
+import LoadingImg from '../Images/loader.svg';
 class CategoryDetails extends Component {
 
     constructor(){

@@ -67,6 +67,12 @@
 .SearchBar-btn {
   margin: 30px;
 }
+
+.SearchBar-card{
+  width: 500px;
+  margin-top: 2%;
+  padding-left: 35%;
+}
 @font-face {
   font-family: "StarWars";
   src: url("../Fonts/Starjedi.ttf");

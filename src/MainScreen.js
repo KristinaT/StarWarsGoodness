@@ -142,7 +142,7 @@ class MainScreen extends Component {
           >
             {imageDivs}
         </Carousel> 
-          <h1 className="Category-details-h1">* Star Wars Goodness *</h1>
+          <h1 className="Category-details-h1">Star Wars Goodness</h1>
             <SearchBar
             inputElement={this.inputElement}
             onChangeInput={this.handleSearchInput}

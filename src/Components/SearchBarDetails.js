@@ -18,8 +18,8 @@ const SearchBarDetails = ({ searchedItemDetails, showSearchBarDetails, loading }
     let detailItems = Object.keys(searchedItemDetails.text).map((key, index) => {
         return (
             <ListItem button>
-                <ListItemText  color="Green" key={index} inset primary={[searchedItemDetails.text[key]]} />
-            </ListItem>
+                <ListItemText  color="Green" key={index} inset primary={[searchedItemDetails.text[key]]} />              
+            </ListItem>         
         )
         
     });
@@ -34,13 +34,13 @@ const SearchBarDetails = ({ searchedItemDetails, showSearchBarDetails, loading }
         }
         else if (showSearchBarDetails === true) {
             showDetail = (
-                <div>
-                    <List component="nav">
-                        <ListItem button>
+                <div className="SearchBar-card">
+                    <List component="nav">                   
+                        <ListItem>
                             <ListItemText inset primary="Details" />
                         </ListItem>
                         {detailItems}                
-                    </List>
+                    </List>           
                 </div>
             );
         }
@@ -49,6 +49,7 @@ const SearchBarDetails = ({ searchedItemDetails, showSearchBarDetails, loading }
     return (
         <MuiThemeProvider theme={theme}>
         <div>
+            {/* <h4>Details</h4> */}
             { showDetail }
         </div>
         </MuiThemeProvider>
