@@ -125,7 +125,7 @@ class MainScreen extends Component {
 
     const imageDivs = Object.values(images).map((img, index)=>{
       return(
-        <img key={index} src={img} alt="img" height="550" width="600" />
+        <img key={index} src={img} alt="img" height="750" width="600" />
       );
     })
 
