@@ -65,17 +65,15 @@ class CategoryDetails extends Component {
 
   render() {
     const { categoryResult, isLoading } = this.state;
-    const { category } = this.props.location.state;
-
-    let itemForRender = <img src={LoadingImg} alt="Loading..." />;
-
-    if (isLoading === false) {
-        itemForRender = categoryResult.map((item, index) => (
+    const { category } = this.props.location.state;   
+    const spinner = <img src={LoadingImg} alt="Loading..." />;
+    const categories =
+      categoryResult &&
+      categoryResult.map((item, index) => (
         <div key={index}>
           <CategoryDetailsInfo name={item.name} item={item} />
         </div>
       ));
-    }
 
     return (
       <div className="Category-details">
@@ -90,7 +88,7 @@ class CategoryDetails extends Component {
           </div>
         </div>
         <Grid container direction="row" justify="center" alignItems="center">
-          {itemForRender}
+          {isLoading ? spinner : categories}
         </Grid>
       </div>
     );
