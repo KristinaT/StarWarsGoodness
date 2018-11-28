@@ -42,7 +42,6 @@ class SearchBar extends Component {
           color="primary"
           onClick={this.props.addItemForSearch}
         >
-          {" "}
           Search{" "}
         </Button>
       </div>

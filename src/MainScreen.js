@@ -112,6 +112,7 @@ class MainScreen extends Component {
       console.log(e);
     }
   };
+  
 
   render() {
     const { searchedItemDetails, foundDetails, loading } = this.state;
