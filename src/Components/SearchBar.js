@@ -14,6 +14,19 @@ const styles = {
   }
 };
 class SearchBar extends Component {
+  constructor(props)
+  {
+    super(props)
+    this.state = {
+      inputVal: '',
+    }
+  }
+
+  _handleInputChange = e => {
+    console.log(e.target.value)
+    this.setState({ inputVal: e.target.value })
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -27,14 +40,14 @@ class SearchBar extends Component {
           }}
           placeholder="Search ... "
           ref={this.props.inputElement}
-          onChange={this.props.onChangeInput}
+          onChange={this._handleInputChange}
         />
         <Button
           className="SearchBar-btn"
           type="submit"
           size="small"
           color="primary"
-          onClick={this.props.addItemForSearch}
+          onClick={() => this.props.addItemForSearch(this.state.inputVal)}
         >
           {" "}
           Search{" "}

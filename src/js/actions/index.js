@@ -5,7 +5,7 @@ export const setSearchedItem = searchedItem => ({
   payload: searchedItem
 });
 
-export const setFoundDetails = foundDetails=>({
+export const setFoundDetails = foundDetails => ({
   type: actionTypes.SET_FOUND_DETAILS,
   payload: foundDetails
 })

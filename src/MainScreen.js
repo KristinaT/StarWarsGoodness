@@ -47,6 +47,7 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
+// Put this in a separate action-creators file
 function setFoundDetails(foundDetails) {
   return { type: actionTypes.SET_FOUND_DETAILS, payload: foundDetails };
 }
@@ -76,36 +77,38 @@ class MainScreen extends Component {
     const itemText = e.target.value;
     const searchedItem = {
       text: itemText,
-      key: Date.now()
+      key: Date.now() //change this to static unique key!!!
     };
-
+    console.log('Called with', e.target.value)
     this.props.setSearchedItem(searchedItem);
   };
 
   addItemForSearch = async e => {
-    const itemForSearch = this.props.searchedItem.text;
+    console.log('called addItemForSearch', e)
+    // const itemForSearch = this.props.searchedItem.text;
 
-    const searchedItem = {
-      text: "",
-      key: ""
-    };
+    // const searchedItem = {
+    //   text: "",
+    //   key: ""
+    // };
 
     this.setState({ loading: true });
 
     // GET request
     try {
-      const response = await this.handleUrl(itemForSearch);
+      const response = await this.handleUrl(e);
       console.log("response", response);
       const searchedItemDetails = {
         text: response,
         key: Date.now()
       };
-
-      this.setState({ foundDetails: true, searchedItemDetails, searchedItem });
+      
+      this.setState({ foundDetails: true, searchedItemDetails, e });
     } catch (e) {
       console.log(e);
 
-      this.setState({ foundDetails: false, searchedItem });
+      
+      this.setState({ foundDetails: false, e });
     }
     this.setState({ loading: false });
   };
@@ -160,7 +163,7 @@ class MainScreen extends Component {
           <SearchBar
             inputElement={this.inputElement}
             onChangeInput={this.handleSearchInput}
-            currentItem={this.props.searchedItem}
+            currentItem={this.props.searchedItem} //this should be in state, not redux because the value is being changed very frequently
             addItemForSearch={this.addItemForSearch}
           />
           <SearchBarDetails
