@@ -7,7 +7,7 @@ import "./Styles/App.css";
 import images from "./Images/images";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { SET_SEARCHED_ITEM } from "./Constants/action-types";
+import * as actionTypes from "./Constants/action-types";
 // eslint-disable-next-line
 import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -33,18 +33,25 @@ const theme = createMuiTheme({
 });
 
 const mapStateToProps = state => ({
-  searchedItem: state.searchedItem
+  searchedItem: state.searchedItem,
+  foundDetails: state.foundDetails
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     setSearchedItem: searchedItem => {
       dispatch(setSearchedItem(searchedItem));
+    },
+    setFoundDetails: foundDetails => {
+      dispatch(setFoundDetails(foundDetails));
     }
   };
 };
+function setFoundDetails(foundDetails) {
+  return { type: actionTypes.SET_FOUND_DETAILS, payload: foundDetails };
+}
 function setSearchedItem(searchedItem) {
-  return { type: SET_SEARCHED_ITEM, payload: searchedItem };
+  return { type: actionTypes.SET_SEARCHED_ITEM, payload: searchedItem };
 }
 class MainScreen extends Component {
   constructor() {
